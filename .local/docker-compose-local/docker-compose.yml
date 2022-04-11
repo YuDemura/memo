@@ -30,7 +30,7 @@ services:
       - $PWD/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=password
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --secure-file-priv="/docker-entrypoint-initdb.d"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time-zone='Asia/Tokyo' --secure-file-priv="/docker-entrypoint-initdb.d"
     networks:
       - tq-docker-template
 
