@@ -23,4 +23,3 @@ $statement->execute();
 
 header('Location: ./index.php');
 exit();
-?>
