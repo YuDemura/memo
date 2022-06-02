@@ -1,11 +1,5 @@
 <?php
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=memo; charset=utf8',
-    $dbUserName,
-    $dbPassword
-);
+require_once(__DIR__ . '/../app/Lib/showMemoList.php');
 
 if (isset($_GET['order'])) {
     $direction = $_GET['order'];
@@ -21,12 +15,7 @@ if (isset($_GET['search'])) {
     $content = '%%';
 }
 
-$sql = "SELECT * FROM pages WHERE title LIKE :title OR content LIKE :content ORDER BY id $direction";
-$statement = $pdo->prepare($sql);
-$statement->bindValue(':title', $title, PDO::PARAM_STR);
-$statement->bindValue(':content', $content, PDO::PARAM_STR);
-$statement->execute();
-$pages = $statement->fetchAll(PDO::FETCH_ASSOC);
+$pages = showMemoList($title, $content, $direction);
 ?>
 
 
