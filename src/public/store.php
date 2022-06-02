@@ -1,25 +1,15 @@
 <?php
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=memo; charset=utf8',
-    $dbUserName,
-    $dbPassword
-);
+require_once(__DIR__ . '/../app/Lib/appshowMessage.php');
+require_once(__DIR__ . '/../app/Lib/createMemo.php');
+require_once(__DIR__ . '/../app/Lib/redirect.php');
 
 $content = filter_input(INPUT_POST, 'content');
 $title = filter_input(INPUT_POST, 'title');
 
 if (empty($title) && empty($content)) {
-    header('Location: ./edit.php');
-    exit();
+    redirect('./edit.php');
 }
 
-$sql = 'INSERT INTO pages(title, content) VALUES(:title, :content)';
-$statement = $pdo->prepare($sql);
-$statement->bindValue(':title', $title, PDO::PARAM_STR);
-$statement->bindValue(':content', $content, PDO::PARAM_STR);
-$statement->execute();
+createMemo($title, $content);
 
-header('Location: ./index.php');
-exit();
+redirect('./index.php');
