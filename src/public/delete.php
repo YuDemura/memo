@@ -1,17 +1,9 @@
 <?php
-$dbUserName = 'root';
-$dbPassword = 'password';
-$pdo = new PDO(
-    'mysql:host=mysql; dbname=memo; charset=utf8',
-    $dbUserName,
-    $dbPassword
-);
+require_once(__DIR__ . '/../app/Lib/deleteMemo.php');
+require_once(__DIR__ . '/../app/Lib/redirect.php');
 
 $id = filter_input(INPUT_GET, 'id');
-$sql = "DELETE FROM pages where id =:id";
-$statement = $pdo->prepare($sql);
-$statement->bindParam(':id', $id, PDO::PARAM_INT);
-$statement->execute();
 
-header('Location: ./index.php');
-exit();
+deleteMemo($id);
+
+redirect('./index.php');
