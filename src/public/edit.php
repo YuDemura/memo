@@ -1,14 +1,8 @@
 <?php
-$dbUserName = "root";
-$dbPassword = "password";
-$pdo = new PDO("mysql:host=mysql; dbname=memo; charset=utf8", $dbUserName, $dbPassword);
+require_once(__DIR__ . '/../app/Lib/editMemo.php');
 
 $id = $_GET['id'];
-$sql = "select * from pages where id=:id";
-$statement = $pdo->prepare($sql);
-$statement->bindParam(':id', $id, PDO::PARAM_INT);
-$statement->execute();
-$memo = $statement->fetch();
+$memo = editMemo($id);
 ?>
 
 <!DOCTYPE html>
