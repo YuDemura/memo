@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/../app/Lib/showMemoList.php');
+require_once __DIR__ . '/../vendor/autoload.php';
+use App\Infrastructure\Dao\PageDao;
 
 if (isset($_GET['order'])) {
     $direction = $_GET['order'];
@@ -15,7 +16,8 @@ if (isset($_GET['search'])) {
     $content = '%%';
 }
 
-$pages = showMemoList($title, $content, $direction);
+$pageDao = new PageDao();
+$pages = $pageDao->showMemoList($title, $content, $direction);
 ?>
 
 

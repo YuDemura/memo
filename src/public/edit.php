@@ -1,8 +1,10 @@
 <?php
-require_once(__DIR__ . '/../app/Lib/editMemo.php');
+require_once __DIR__ . '/../vendor/autoload.php';
+use App\Infrastructure\Dao\PageDao;
 
 $id = $_GET['id'];
-$memo = editMemo($id);
+$pageDao = new PageDao();
+$memo = $pageDao->editMemo($id);
 ?>
 
 <!DOCTYPE html>
