@@ -26,10 +26,10 @@ final class PageDao extends Dao
                 , :content)
             ;
         EOF;
-    $statement = $this->pdo->prepare($sql);
-    $statement->bindValue(':title', $title, PDO::PARAM_STR);
-    $statement->bindValue(':content', $content, PDO::PARAM_STR);
-    $statement->execute();
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':title', $title, PDO::PARAM_STR);
+        $statement->bindValue(':content', $content, PDO::PARAM_STR);
+        $statement->execute();
     }
 
     /**
@@ -46,8 +46,8 @@ final class PageDao extends Dao
             ;
         EOF;
         $statement = $this->pdo->prepare($sql);
-    $statement->bindParam(':id', $id, PDO::PARAM_INT);
-    $statement->execute();
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
     }
 
     /**
@@ -110,20 +110,20 @@ final class PageDao extends Dao
      */
     public function updateMemo(string $title, string $content, string $id): void
     {
-	$sql = <<<EOF
-		UPDATE
-			pages
-		SET
-			title=:title
-			, content=:content
-		WHERE
-			id = :id
-		;
-	EOF;
-	$statement = $this->pdo->prepare($sql);
-	$statement->bindValue(':title', $title, PDO::PARAM_STR);
-	$statement->bindValue(':content', $content, PDO::PARAM_STR);
-    $statement->bindValue(':id', $id, PDO::PARAM_INT);
-	$statement->execute();
+        $sql = <<<EOF
+            UPDATE
+                pages
+            SET
+                title=:title
+                , content=:content
+            WHERE
+                id = :id
+            ;
+        EOF;
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':title', $title, PDO::PARAM_STR);
+        $statement->bindValue(':content', $content, PDO::PARAM_STR);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
     }
 }
